@@ -91,7 +91,7 @@ def handle_change(change):
     for message in val['messages']:
         handle_message(message)
 
-def lambda_handler(event, context):
+def handler(event, context):
     # print(json.dumps(event))
     http = event['requestContext']['http']
     if http['method'] == 'GET':
