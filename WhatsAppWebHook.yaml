@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Action webhook calls from the WhatsApp Business API
+Resources:
+  WhatsAppWebHook:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: WhatsAppWebHook
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      InlineCode: def lambda_handler(event, context):-<
+        print(event)
+      Description: Action webhook calls from the WhatsApp Business API
+      MemorySize: 128
+      Timeout: 3
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: member_entries
+        - DynamoDBCrudPolicy:
+            TableName: public_location
+      FunctionUrlConfig:
+        AuthType: NONE
